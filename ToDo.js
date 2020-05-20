@@ -1,14 +1,14 @@
 const addBtn = document.getElementById('addTask');
 const inputTittle = document.querySelector('#inputTitle').value;
-const inputext =  document.querySelector('#inputText').value;
+const inputext = document.querySelector('#inputText').value;
 const currentTasks = document.querySelector('#currentTasks');
-
+const completedTasks = document.querySelector('#completedTasks');
 
 let todoList = [];
 
 
 // parse localstorage
-if(localStorage.getItem('todo')) {
+if (localStorage.getItem('todo')) {
     todoList = JSON.parse(localStorage.getItem('todo'));
     displayMessages();
 }
@@ -17,8 +17,8 @@ if(localStorage.getItem('todo')) {
 //display todo
 function displayMessages() {
     currentTasks.innerHTML = '';
-    if(todoList.length === 0)currentTasks.innerHTML = '';
-    todoList.forEach(function(item, i) {
+    if (todoList.length === 0) currentTasks.innerHTML = '';
+    todoList.forEach(function (item, i) {
         currentTasks.innerHTML += `  <li class="list-group-item d-flex w-100 mb-2" id="item_${i}">
         <div class="w-100 mr-2">
             <div class="d-flex w-100 justify-content-between">
@@ -42,7 +42,7 @@ function displayMessages() {
             </div>
         </div>
     </li>`;
-   
+
     })
 };
 
@@ -68,19 +68,19 @@ function closeModal() {
 
 
 //addtodo
-addBtn.addEventListener('click', function(event) {
+addBtn.addEventListener('click', function (event) {
     event.preventDefault();
     let newTodo = {
-        'tittle':document.querySelector('#inputTitle').value,
+        'tittle': document.querySelector('#inputTitle').value,
         'text': document.querySelector('#inputText').value,
         "pripority": chooseRadio(document.querySelectorAll('input[name=gridRadios]')).value,
         "date": new Date(),
         'complete': false
     };
-    
-    if(document.querySelector('#inputTitle').value && document.querySelector('#inputText').value) {
-        
-        todoList.push(newTodo) ;
+
+    if (document.querySelector('#inputTitle').value && document.querySelector('#inputText').value) {
+
+        todoList.push(newTodo);
         displayMessages();
         localStorage.setItem('todo', JSON.stringify(todoList));
         inputTittle.value = '';
@@ -90,14 +90,54 @@ addBtn.addEventListener('click', function(event) {
 });
 
 //complete
-let btnAll = document.querySelectorAll('.btn');
-for(let item of btnAll) {
-    if(item.innerHTML == 'Complete') {
-        console.log(item.id);
-    }
-}
-for(let item of currentTasks.children) {
-    console.log(item.id);
-}
+currentTasks.addEventListener('click', function (e) {
+    if (e.target.innerHTML == 'Complete') {
+        for (let item of currentTasks.children) {
+            if (e.target.id == item.id) {
+                completedTasks.appendChild(item);
+            }
+        }
+        //DELTE
+    } else if (e.target.innerHTML == 'Delete') {
+        for (let item of currentTasks.children  ) {
+            if (e.target.id == item.id) {
+                item.remove();
+            }
+        }
+       
+    } 
+    
+});
+
+completedTasks.addEventListener('click', function (e) {
+     //DELTE
+    if (e.target.innerHTML == 'Delete') {
+        for (let item of completedTasks.children  ) {
+            if (e.target.id == item.id) {
+                item.remove();
+            }
+        }
+       
+    } 
+    
+});
+
+// SORT
+document.querySelector('#des').addEventListener('click',function() {
+    todoList = todoList.sort(function (a, b) {
+        return a.date - b.date;
+    });
+    displayMessages();
+});
+document.querySelector('#asc').addEventListener('click',function() {
+    todoList = todoList.sort(function (a, b) {
+        return b.date - a.date;
+    });
+    displayMessages();
+});
+
+
+
+
 
 
