@@ -1,0 +1,12 @@
+.lowPripority {
+    background-color: rgb(9, 255, 0);
+}
+.mediumPripority {
+    background-color: rgb(238, 238, 46);
+}
+.hightPripority {
+    background-color: tomato;
+}
+.complete {
+    background-color: gray;
+}

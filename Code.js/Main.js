@@ -15,7 +15,7 @@ function displayToDo() {
     if (todoList.length === 0) currentTasks.innerHTML = '';
     todoList.forEach(function (item) {
         if (item.complete == false) {
-            currentTasks.innerHTML += `  <li class="list-group-item d-flex w-100 mb-2" id="${item.id}">
+            currentTasks.innerHTML += `  <li class="list-group-item d-flex w-100 mb-2 ${item.colorStile}" id="${item.id}">
         <div class="w-100 mr-2">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">${item.tittle}</h5>
@@ -82,10 +82,26 @@ addBtn.addEventListener('click', function (event) {
         "pripority": chooseRadio(document.querySelectorAll('input[name=gridRadios]')).value,
         "date": new Date(),
         'complete': false,
-        'edit': false
+        'edit': false,
+        'colorStile': 1,
+        'count': 0
     };
     if (document.querySelector('#inputTitle').value && document.querySelector('#inputText').value) {
         todoList.push(newTodo);
+        for(let i = 0; i < todoList.length; i++) {
+            if(todoList[i].edit == true) {
+                todoList.splice(i,1);
+            }
+        }
+        for(let i = 0; i < todoList.length; i++) {
+            if(todoList[i].pripority == "Low") {
+                todoList[i].colorStile = 'lowPripority';
+            }else if(todoList[i].pripority == "Medium") {
+                todoList[i].colorStile = 'mediumPripority';
+            }else if(todoList[i].pripority == "High"){
+                todoList[i].colorStile = 'hightPripority';
+            }
+        }
         displayToDo();
         document.querySelector('#inputTitle').value = '';
         document.querySelector('#inputText').value = '';

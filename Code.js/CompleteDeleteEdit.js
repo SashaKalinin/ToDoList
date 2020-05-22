@@ -6,6 +6,7 @@ currentTasks.addEventListener('click', function (e) {
         for (let item of currentTasks.children) {
             if (e.target.id == item.id) {
                 completedTasks.appendChild(item);
+                
                 //chenge flag
                 for (let i = 0; i < todoList.length; i++) {
                     if (e.target.id == todoList[i].id) {
@@ -37,6 +38,8 @@ currentTasks.addEventListener('click', function (e) {
             if (e.target.id == item.id) {
                 for (let item of todoList) {
                     if (e.target.id == item.id) {
+                        item.edit = true;
+                        console.log(todoList);
                         document.querySelector('#inputTitle').value = item.tittle;
                         document.querySelector('#inputText').value = item.text;
                         let radios = document.querySelectorAll('input[name=gridRadios]');
@@ -44,9 +47,9 @@ currentTasks.addEventListener('click', function (e) {
                             if (radios[i].id == item.pripority) {
                                 radios[i].checked = true;
                             }
-                        }
-                        showModal();
-                    }
+                        }showModal();
+                    } 
+                    
                 }
             }
         }
