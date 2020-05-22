@@ -51,7 +51,9 @@ function chooseRadio(radios) {
 //close modal
 function closeModal() {
     let modal = document.querySelector('#exampleModal');
+    document.body.classList.remove('modal-open');
     modal.classList.remove('show');
+    modal.removeAttribute('aria-modal');
     modal.setAttribute('aria-hidden', 'true');
     modal.setAttribute('style', 'display: none');
     const modalBackdrops = document.getElementsByClassName('modal-backdrop');
@@ -61,7 +63,7 @@ function closeModal() {
 
 function showModal() {
 
-    
+
 }
 
 //addToDo
