@@ -3,6 +3,9 @@ var inputTittle = document.querySelector('#inputTitle').value;
 var inputext = document.querySelector('#inputText').value;
 var currentTasks = document.querySelector('#currentTasks');
 var completedTasks = document.querySelector('#completedTasks');
+var exit = document.querySelector('#exit');
+var exit2 = document.querySelector('#exit2');
+var addTask2 = document.querySelector("#addTask2");
 
 let todoList = [];
 
@@ -11,7 +14,7 @@ function displayToDo() {
     currentTasks.innerHTML = '';
     if (todoList.length === 0) currentTasks.innerHTML = '';
     todoList.forEach(function (item) {
-        if (item.complete == false) {
+        
             currentTasks.innerHTML += `  <li class="list-group-item d-flex w-100 mb-2" id="${item.id}">
         <div class="w-100 mr-2">
             <div class="d-flex w-100 justify-content-between">
@@ -35,7 +38,7 @@ function displayToDo() {
             </div>
         </div>
     </li>`;
-        }
+        
     })
 };
 
@@ -48,7 +51,8 @@ function chooseRadio(radios) {
     }
 };
 
-//close modal
+
+//CLOSE MODAL
 function closeModal() {
     let modal = document.querySelector('#exampleModal');
     document.body.classList.remove('modal-open');
@@ -58,13 +62,44 @@ function closeModal() {
     modal.setAttribute('style', 'display: none');
     const modalBackdrops = document.getElementsByClassName('modal-backdrop');
     document.body.removeChild(modalBackdrops[0]);
+    const delShadow = document.querySelector('.modal-backdrop');
+    
+
 }
 
-
+//SHOW MODAL
 function showModal() {
-
-
+    let modal = document.querySelector('#exampleModal');
+    document.body.classList.add('modal-open');
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    modal.setAttribute('style', 'display: block');
+    let fadeElem = document.createElement("div");
+    fadeElem.className = 'modal-backdrop fade show ';
+    const addAfter = document.querySelector('#script');
+    addAfter.after(fadeElem);
 }
+
+//EXIT on x and close button
+exit.addEventListener('click', function () {
+    closeModal();
+});
+exit2.addEventListener('click', function () {
+    closeModal();
+});
+
+//ADD TASK
+addTask2.addEventListener('click', function(e) {
+    e.preventDefault();
+    let modal = document.querySelector('#exampleModal');
+    document.body.classList.add('modal-open');
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    modal.setAttribute('style', 'display: block');
+    document.querySelector('#inputTitle').value = '';
+    document.querySelector('#inputText').value = '';
+    document.querySelector('#Medium').checked = true;
+})
 
 //addToDo
 addBtn.addEventListener('click', function (event) {
@@ -75,7 +110,8 @@ addBtn.addEventListener('click', function (event) {
         'text': document.querySelector('#inputText').value,
         "pripority": chooseRadio(document.querySelectorAll('input[name=gridRadios]')).value,
         "date": new Date(),
-        'complete': false
+        'complete': false,
+        'edit': false
     };
     if (document.querySelector('#inputTitle').value && document.querySelector('#inputText').value) {
         todoList.push(newTodo);
@@ -101,7 +137,8 @@ currentTasks.addEventListener('click', function (e) {
                 for (let i = 0; i < todoList.length; i++) {
                     if (e.target.id == todoList[i].id) {
                         todoList[i].complete = true;
-                    }
+                        
+                    }console.log(todoList)
                 }
             }
         }
@@ -129,8 +166,20 @@ currentTasks.addEventListener('click', function (e) {
     else if (e.target.innerHTML == 'Edit') {
         for (let item of currentTasks.children) {
             if (e.target.id == item.id) {
-                document.querySelector('#addTask2').click();
-
+                for (let item of todoList) {
+                    if (e.target.id == item.id) {
+                        console.log(item.pripority);
+                        document.querySelector('#inputTitle').value = item.tittle;
+                        document.querySelector('#inputText').value = item.text;
+                        let radios = document.querySelectorAll('input[name=gridRadios]');
+                        for (let i = 0; i < radios.length; i++) {
+                            if (radios[i].id == item.pripority) {
+                                radios[i].checked = true;
+                            }
+                        }
+                        showModal();
+                    }
+                }
             }
         }
 
