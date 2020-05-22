@@ -11,7 +11,8 @@ function displayToDo() {
     currentTasks.innerHTML = '';
     if (todoList.length === 0) currentTasks.innerHTML = '';
     todoList.forEach(function (item) {
-        currentTasks.innerHTML += `  <li class="list-group-item d-flex w-100 mb-2" id="${item.id}">
+        if (item.complete == false) {
+            currentTasks.innerHTML += `  <li class="list-group-item d-flex w-100 mb-2" id="${item.id}">
         <div class="w-100 mr-2">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">${item.tittle}</h5>
@@ -34,7 +35,7 @@ function displayToDo() {
             </div>
         </div>
     </li>`;
-
+        }
     })
 };
 
@@ -57,6 +58,12 @@ function closeModal() {
     document.body.removeChild(modalBackdrops[0]);
 }
 
+
+function showModal() {
+
+    
+}
+
 //addToDo
 addBtn.addEventListener('click', function (event) {
     event.preventDefault();
@@ -74,41 +81,50 @@ addBtn.addEventListener('click', function (event) {
         document.querySelector('#inputTitle').value = '';
         document.querySelector('#inputText').value = '';
         closeModal();
-        
     }
 
 
 })
 
 
-//complete
+//COMPLETE DELETE EDIT
+
+//COMPLETE
 currentTasks.addEventListener('click', function (e) {
     if (e.target.innerHTML == 'Complete') {
         for (let item of currentTasks.children) {
             if (e.target.id == item.id) {
                 completedTasks.appendChild(item);
-                //добавляем в массив выполненные
-              
-
+                //chenge flag
+                for (let i = 0; i < todoList.length; i++) {
+                    if (e.target.id == todoList[i].id) {
+                        todoList[i].complete = true;
+                    }
+                }
             }
         }
-        //DELTE
-    } else if (e.target.innerHTML == 'Delete') {
+    }
+
+
+
+    //DELETE
+    else if (e.target.innerHTML == 'Delete') {
         for (let item of currentTasks.children) {
             if (e.target.id == item.id) {
                 item.remove();
-                for(let i = 0; i < todoList.length; i++) {
-                    if(e.target.id == todoList[i].id) {
-                        todoList.splice(i,1);
-                        console.log(todoList);
+                for (let i = 0; i < todoList.length; i++) {
+                    if (e.target.id == todoList[i].id) {
+                        todoList.splice(i, 1);
                     }
                 }
             }
         };
 
+    }
 
-        
-    } else if (e.target.innerHTML == 'Edit') {
+
+    //EDIT
+    else if (e.target.innerHTML == 'Edit') {
         for (let item of currentTasks.children) {
             if (e.target.id == item.id) {
                 document.querySelector('#addTask2').click();
@@ -120,38 +136,44 @@ currentTasks.addEventListener('click', function (e) {
 
 });
 
+
+
+// DELETE COMPLETE
 completedTasks.addEventListener('click', function (e) {
-    //DELTE
     if (e.target.innerHTML == 'Delete') {
         for (let item of completedTasks.children) {
             if (e.target.id == item.id) {
                 item.remove();
-                for(let i = 0; i < todoList.length; i++) {
-                    if(e.target.id == todoList[i].id) {
-                        todoList.splice(i,1);
-                        console.log(todoList);
+                for (let i = 0; i < todoList.length; i++) {
+                    if (e.target.id == todoList[i].id) {
+                        todoList.splice(i, 1);
                     }
                 }
-               
             }
         };
-
-
-        
     }
-
 });
+
+
 
 // SORT
 document.querySelector('#des').addEventListener('click', function () {
-    todoList = todoList.sort(function (a, b) {
-        return a.date - b.date;
-    });
+    for (let item of todoList) {
+        if (item.complete == false) {
+            todoList = todoList.sort(function (a, b) {
+                return a.date - b.date;
+            });
+        }
+    }
     displayToDo();
 });
 document.querySelector('#asc').addEventListener('click', function () {
-    todoList = todoList.sort(function (a, b) {
-        return b.date - a.date;
-    });
+    for (let item of todoList) {
+        if (item.complete == false) {
+            todoList = todoList.sort(function (a, b) {
+                return b.date - a.date;
+            });
+        }
+    }
     displayToDo();
 });
