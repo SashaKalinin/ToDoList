@@ -6,8 +6,27 @@ var completedTasks = document.querySelector('#completedTasks');
 var exit = document.querySelector('#exit');
 var exit2 = document.querySelector('#exit2');
 var addTask2 = document.querySelector("#addTask2");
+var count1 = document.querySelector('#count1');
+var count2 = document.querySelector('#count2');
+
+
+//create counter1
+let span = document.createElement('span');
+count1.appendChild(span);
+
+//create counter2
+let span2 = document.createElement('span');
+count2.appendChild(span2);
+
 
 let todoList = [];
+
+
+
+
+
+
+
 
 
 function displayToDo() {
@@ -84,24 +103,25 @@ addBtn.addEventListener('click', function (event) {
         'complete': false,
         'edit': false,
         'colorStile': 1,
-        'count': 0
+        
     };
     if (document.querySelector('#inputTitle').value && document.querySelector('#inputText').value) {
         todoList.push(newTodo);
-        for(let i = 0; i < todoList.length; i++) {
-            if(todoList[i].edit == true) {
-                todoList.splice(i,1);
+        for (let i = 0; i < todoList.length; i++) {
+            if (todoList[i].edit == true) {
+                todoList.splice(i, 1);
             }
         }
-        for(let i = 0; i < todoList.length; i++) {
-            if(todoList[i].pripority == "Low") {
+        for (let i = 0; i < todoList.length; i++) {
+            if (todoList[i].pripority == "Low") {
                 todoList[i].colorStile = 'lowPripority';
-            }else if(todoList[i].pripority == "Medium") {
+            } else if (todoList[i].pripority == "Medium") {
                 todoList[i].colorStile = 'mediumPripority';
-            }else if(todoList[i].pripority == "High"){
+            } else if (todoList[i].pripority == "High") {
                 todoList[i].colorStile = 'hightPripority';
             }
         }
+        
         displayToDo();
         document.querySelector('#inputTitle').value = '';
         document.querySelector('#inputText').value = '';

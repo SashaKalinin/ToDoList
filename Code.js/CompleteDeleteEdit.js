@@ -15,8 +15,9 @@ currentTasks.addEventListener('click', function (e) {
                 }
             }
         }
+        
     }
-
+    
     //DELETE
     else if (e.target.innerHTML == 'Delete') {
         for (let item of currentTasks.children) {
@@ -39,7 +40,6 @@ currentTasks.addEventListener('click', function (e) {
                 for (let item of todoList) {
                     if (e.target.id == item.id) {
                         item.edit = true;
-                        console.log(todoList);
                         document.querySelector('#inputTitle').value = item.tittle;
                         document.querySelector('#inputText').value = item.text;
                         let radios = document.querySelectorAll('input[name=gridRadios]');
