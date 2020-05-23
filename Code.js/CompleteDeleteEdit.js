@@ -14,7 +14,9 @@ currentTasks.addEventListener('click', function (e) {
                     }
                 }
             }
-        }
+        }completeToDo();
+        countTodo();
+        displayToDo();
         
     }
     
@@ -29,7 +31,9 @@ currentTasks.addEventListener('click', function (e) {
                     }
                 }
             }
-        };
+        };completeToDo();
+        countTodo();
+        displayToDo();
 
     }
 
