@@ -74,8 +74,8 @@ completedTasks.addEventListener('click', function (e) {
                 for (let i = 0; i < completeList.length; i++) {
                     if (e.target.id == completeList[i].id) {
                         completeList.splice(i, 1);
-                        displayToDo();
-                    }
+                        
+                    }displayToDo();
                 }
             }
         };
