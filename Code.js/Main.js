@@ -9,60 +9,30 @@ var addTask2 = document.querySelector("#addTask2");
 var count1 = document.querySelector('#count1');
 var count2 = document.querySelector('#count2');
 
+let todoList = [];
+let completeList = [];
 
 //create counter1
 let span = document.createElement('span');
 span.style.color = 'red';
-let counter1 = 0;
-span.innerHTML = ` ${counter1}`  ;
+span.innerHTML = ` ${todoList.length}`  ;
 count1.appendChild(span);
-
-
-
 
 
 //create counter2
 let span2 = document.createElement('span');
 span2.style.color = 'red';
-let counter2 = 0;
-span2.innerHTML =` ${counter2}`;
+span2.innerHTML =` ${completeList.length}`;
 count2.appendChild(span2);
-
-
-//COUNTR FUNCTION
-function countTodo() {
-  todoList.forEach(function(item,i) {
-      if(item.complete == false) {
-          counter1 = i+1;
-      }
-  })
-  
-};
-function completeToDo() {
-    todoList.forEach(function(item,i) {
-        if(item.complete == true) {
-            counter2 = i+1;
-        }
-    })
-}
-
-let todoList = [];
-
-
-
-
-
-
-
 
 
 function displayToDo() {
     currentTasks.innerHTML = '';
     if (todoList.length === 0) currentTasks.innerHTML = '';
     todoList.forEach(function (item) {
-        if (item.complete == false) {
-            span.innerHTML = ` ${counter1}`;
-            span2.innerHTML =` ${counter2}`;
+
+            span.innerHTML = ` ${todoList.length}`;
+            span2.innerHTML =` ${completeList.length}`;
             currentTasks.innerHTML += `  <li class="list-group-item d-flex w-100 mb-2 ${item.colorStile}" id="${item.id}">
         <div class="w-100 mr-2">
             <div class="d-flex w-100 justify-content-between">
@@ -86,7 +56,7 @@ function displayToDo() {
             </div>
         </div>
     </li>`;
-        }
+        
     })
 };
 
@@ -150,8 +120,6 @@ addBtn.addEventListener('click', function (event) {
                 todoList[i].colorStile = 'hightPripority';
             }
         }
-        countTodo();
-        completeToDo();
         displayToDo();
         document.querySelector('#inputTitle').value = '';
         document.querySelector('#inputText').value = '';
@@ -160,3 +128,4 @@ addBtn.addEventListener('click', function (event) {
 
 
 })
+

@@ -6,17 +6,17 @@ currentTasks.addEventListener('click', function (e) {
         for (let item of currentTasks.children) {
             if (e.target.id == item.id) {
                 completedTasks.appendChild(item);
-                
                 //chenge flag
                 for (let i = 0; i < todoList.length; i++) {
                     if (e.target.id == todoList[i].id) {
-                        todoList[i].complete = true; 
+                        todoList[i].complete = true;
+                         completeList.push(todoList[i]);
+                         todoList.splice(i,1);
+                         displayToDo();
                     }
                 }
             }
-        }completeToDo();
-        countTodo();
-        displayToDo();
+        }
         
     }
     
@@ -28,13 +28,12 @@ currentTasks.addEventListener('click', function (e) {
                 for (let i = 0; i < todoList.length; i++) {
                     if (e.target.id == todoList[i].id) {
                         todoList.splice(i, 1);
+                        console.log(todoList);
+                        displayToDo();
                     }
                 }
             }
-        };completeToDo();
-        countTodo();
-        displayToDo();
-
+        };
     }
 
     //EDIT
@@ -59,8 +58,12 @@ currentTasks.addEventListener('click', function (e) {
         }
 
     }
-
+    
 });
+
+
+
+
 
 // DELETE COMPLETE
 completedTasks.addEventListener('click', function (e) {
@@ -68,9 +71,10 @@ completedTasks.addEventListener('click', function (e) {
         for (let item of completedTasks.children) {
             if (e.target.id == item.id) {
                 item.remove();
-                for (let i = 0; i < todoList.length; i++) {
-                    if (e.target.id == todoList[i].id) {
-                        todoList.splice(i, 1);
+                for (let i = 0; i < completeList.length; i++) {
+                    if (e.target.id == completeList[i].id) {
+                        completeList.splice(i, 1);
+                        displayToDo();
                     }
                 }
             }
