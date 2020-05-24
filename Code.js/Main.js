@@ -15,25 +15,26 @@ let completeList = [];
 //create counter1
 let span = document.createElement('span');
 span.style.color = 'red';
-span.innerHTML = ` ${todoList.length}`  ;
+span.innerHTML = ` ${todoList.length}`;
 count1.appendChild(span);
 
 
 //create counter2
 let span2 = document.createElement('span');
 span2.style.color = 'red';
-span2.innerHTML =` ${completeList.length}`;
+span2.innerHTML = ` ${completeList.length}`;
 count2.appendChild(span2);
 
 
 function displayToDo() {
     currentTasks.innerHTML = '';
     if (todoList.length === 0) currentTasks.innerHTML = '';
+    span.innerHTML = ` ${todoList.length}`;
+    span2.innerHTML = ` ${completeList.length}`;
     todoList.forEach(function (item) {
 
-            span.innerHTML = ` ${todoList.length}`;
-            span2.innerHTML =` ${completeList.length}`;
-            currentTasks.innerHTML += `  <li class="list-group-item d-flex w-100 mb-2 ${item.colorStile}" id="${item.id}">
+        
+        currentTasks.innerHTML += `  <li class="list-group-item d-flex w-100 mb-2 ${item.colorStile}" id="${item.id}">
         <div class="w-100 mr-2">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">${item.tittle}</h5>
@@ -56,7 +57,7 @@ function displayToDo() {
             </div>
         </div>
     </li>`;
-        
+
     })
 };
 
@@ -128,4 +129,3 @@ addBtn.addEventListener('click', function (event) {
 
 
 })
-

@@ -1,12 +1,15 @@
 .lowPripority {
     background-color: rgb(9, 255, 0);
 }
+
 .mediumPripority {
     background-color: rgb(238, 238, 46);
 }
+
 .hightPripority {
     background-color: tomato;
 }
+
 .complete {
     background-color: gray;
 }
@@ -15,30 +18,33 @@
     color: red;
     font-weight: bold;
     font-size: 18px;
-    
+
 }
+
 .blue {
     color: blue;
     font-weight: bold;
     font-size: 18px;
 }
+
 .purple {
     color: purple;
     font-weight: bold;
     font-size: 18px;
 }
+
 .red:hover {
     color: red;
-    
+
 }
+
 .blue:hover {
-   color: blue;
+    color: blue;
 }
+
 .purple:hover {
     color: purple;
 }
-
-
 
 .menudrop {
     display: flex;
@@ -53,20 +59,25 @@
     background-color: red;
     border: 1px solid transparent;
 }
+
 .bgColorred:hover {
-   background-color: red;
-   border: 1px solid black;
+    background-color: red;
+    border: 1px solid black;
 }
+
 .bgColorpurple {
     background-color: purple;
 }
+
 .bgColorred:hover {
     background-color: purple;
     border: 1px solid black;
 }
+
 .navColorRed {
     background-color: rgba(255, 0, 0, .3);
 }
+
 .navColorPurple {
     background-color: rgb(128, 0, 128, .3);
 }

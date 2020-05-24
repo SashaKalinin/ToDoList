@@ -9,8 +9,6 @@ function closeModal() {
     const modalBackdrops = document.getElementsByClassName('modal-backdrop');
     document.body.removeChild(modalBackdrops[0]);
     const delShadow = document.querySelector('.modal-backdrop');
-    
-
 }
 
 //SHOW MODAL

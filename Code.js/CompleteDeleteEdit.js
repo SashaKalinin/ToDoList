@@ -10,16 +10,16 @@ currentTasks.addEventListener('click', function (e) {
                 for (let i = 0; i < todoList.length; i++) {
                     if (e.target.id == todoList[i].id) {
                         todoList[i].complete = true;
-                         completeList.push(todoList[i]);
-                         todoList.splice(i,1);
-                         displayToDo();
+                        completeList.push(todoList[i]);
+                        todoList.splice(i, 1);
+                        displayToDo();
                     }
                 }
             }
         }
-        
+
     }
-    
+
     //DELETE
     else if (e.target.innerHTML == 'Delete') {
         for (let item of currentTasks.children) {
@@ -50,15 +50,13 @@ currentTasks.addEventListener('click', function (e) {
                             if (radios[i].id == item.pripority) {
                                 radios[i].checked = true;
                             }
-                        }showModal();
-                    } 
-                    
+                        }
+                        showModal();
+                    }
                 }
             }
         }
-
     }
-    
 });
 
 
@@ -74,8 +72,8 @@ completedTasks.addEventListener('click', function (e) {
                 for (let i = 0; i < completeList.length; i++) {
                     if (e.target.id == completeList[i].id) {
                         completeList.splice(i, 1);
-                        
-                    }displayToDo();
+                        displayToDo();
+                    }
                 }
             }
         };
