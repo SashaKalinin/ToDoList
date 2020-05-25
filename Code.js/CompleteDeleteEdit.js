@@ -28,7 +28,7 @@ currentTasks.addEventListener('click', function (e) {
                 for (let i = 0; i < todoList.length; i++) {
                     if (e.target.id == todoList[i].id) {
                         todoList.splice(i, 1);
-                        console.log(todoList);
+                        
                         displayToDo();
                     }
                 }
