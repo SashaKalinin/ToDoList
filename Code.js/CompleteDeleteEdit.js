@@ -42,7 +42,6 @@ currentTasks.addEventListener('click', function (e) {
                         for(let i = 0; i < completeList.length; i++) {
                             localStorage.setItem(`complete_${i}`, JSON.stringify(completeList[i]));
                         }
-                        localStorage.removeItem(`todo_${i}`);
                         displayToDo();
                     }
                 }
@@ -92,7 +91,6 @@ completedTasks.addEventListener('click', function (e) {
                         for(let i = 0; i < completeList.length; i++) {
                             localStorage.setItem(`complete_${i}`, JSON.stringify(completeList[i]));
                         }
-                        localStorage.removeItem(`complete_${i}`);
                         displayToDo();
                     }
                 }

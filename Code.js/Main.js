@@ -1,3 +1,4 @@
+
 var addBtn = document.getElementById('addTask');
 var inputTittle = document.querySelector('#inputTitle').value;
 var inputext = document.querySelector('#inputText').value;
@@ -8,6 +9,7 @@ var exit2 = document.querySelector('#exit2');
 var addTask2 = document.querySelector("#addTask2");
 var count1 = document.querySelector('#count1');
 var count2 = document.querySelector('#count2');
+
 
 let todoList = [];
 let completeList = [];
@@ -54,14 +56,11 @@ exit2.addEventListener('click', function () {
 
 //ADD TASK
 addTask2.addEventListener('click', function () {
-    let modal = document.querySelector('#exampleModal');
-    document.body.classList.add('modal-open');
-    modal.classList.add('show');
-    modal.setAttribute('aria-hidden', 'false');
-    modal.setAttribute('style', 'display: block');
+    showModal();
     document.querySelector('#inputTitle').value = '';
     document.querySelector('#inputText').value = '';
     document.querySelector('#Medium').checked = true;
+
 })
 
 
@@ -89,16 +88,16 @@ addBtn.addEventListener('click', function (event) {
     if (document.querySelector('#inputTitle').value && document.querySelector('#inputText').value) {
         todoList.push(newTodo);
         for (let i = 0; i < todoList.length; i++) {
-            if (todoList[i].edit == true) {
+            if (todoList[i].edit === true) {
                 todoList.splice(i, 1);
             }
         }
         for (let i = 0; i < todoList.length; i++) {
-            if (todoList[i].pripority == "Low") {
+            if (todoList[i].pripority === "Low") {
                 todoList[i].colorStile = 'lowPripority';
-            } else if (todoList[i].pripority == "Medium") {
+            } else if (todoList[i].pripority === "Medium") {
                 todoList[i].colorStile = 'mediumPripority';
-            } else if (todoList[i].pripority == "High") {
+            } else if (todoList[i].pripority === "High") {
                 todoList[i].colorStile = 'hightPripority';
             }
         }
