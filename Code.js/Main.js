@@ -119,7 +119,7 @@ addBtn.addEventListener('click', function (event) {
 for(let i = 0; i < localStorage.length; i++) {
     if(localStorage.key(i)[0] === "c") {
         completeList.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-    }else {
+    }else if(localStorage.key(i)[0] === "t"){
         todoList.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
     }
     displayToDo();
